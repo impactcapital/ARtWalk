@@ -1,0 +1,126 @@
+/**
+ * Built-in mission templates for ARtWalk Miami.
+ * These seed the `mission_templates` table on first deploy.
+ */
+import type { MissionTemplate } from "./types.js";
+
+export const MISSION_TEMPLATES: MissionTemplate[] = [
+  {
+    id: "tree-survey",
+    title: "Urban Tree Survey",
+    description: "Photograph and measure a street tree. Miami's urban canopy is a critical climate asset — help us map it.",
+    difficulty: "easy",
+    dataType: "tree_survey",
+    baseXp: 150,
+    sciStarterProjectId: undefined,   // fill with SciStarter tree project ID
+    requiresPhoto: true,
+    icon: "🌳",
+    color: "#2D8A4E",
+    fields: [
+      { key: "species", label: "Tree species", type: "text", required: false },
+      { key: "cbh_cm", label: "Trunk circumference", type: "number", unit: "cm", required: false, min: 5, max: 2000 },
+      { key: "condition", label: "Tree condition", type: "select", required: true,
+        options: ["excellent", "good", "fair", "poor", "dead"] },
+      { key: "has_street_sign", label: "Has a street sign placard?", type: "boolean", required: true },
+    ],
+  },
+  {
+    id: "biodiversity-sighting",
+    title: "Wildlife Sighting",
+    description: "Spotted a bird, lizard, butterfly, or plant? Log it for Miami's biodiversity record — syncs to iNaturalist.",
+    difficulty: "easy",
+    dataType: "biodiversity",
+    baseXp: 100,
+    iNaturalistProjectSlug: "artwalk-miami-biodiversity",
+    requiresPhoto: true,
+    icon: "🦎",
+    color: "#1AADAD",
+    fields: [
+      { key: "taxon_name", label: "Species (best guess)", type: "species_search", required: false },
+      { key: "count", label: "How many did you see?", type: "number", unit: "individuals", required: true, min: 1, max: 999 },
+      { key: "notes", label: "Notes", type: "text", required: false },
+    ],
+  },
+  {
+    id: "flooding-report",
+    title: "Flood Observation",
+    description: "Standing water after rain? Document where and how deep. Miami's drainage data needs your eyes on the ground.",
+    difficulty: "easy",
+    dataType: "environmental",
+    baseXp: 120,
+    sciStarterProjectId: undefined,  // ISeeChange via SciStarter
+    requiresPhoto: true,
+    icon: "🌊",
+    color: "#0B6E6E",
+    fields: [
+      { key: "severity", label: "Water depth estimate", type: "select", required: true,
+        options: ["ankle-deep", "knee-deep", "waist-deep", "impassable"] },
+      { key: "description", label: "What do you see?", type: "text", required: true },
+    ],
+  },
+  {
+    id: "heat-island",
+    title: "Urban Heat Check",
+    description: "Miami's heat islands are unmapped at street level. Note surface conditions that trap heat.",
+    difficulty: "easy",
+    dataType: "urban_heat",
+    baseXp: 100,
+    requiresPhoto: true,
+    icon: "🌡️",
+    color: "#FF4557",
+    fields: [
+      { key: "surface_type", label: "Dominant surface", type: "select", required: true,
+        options: ["asphalt", "concrete", "grass", "water", "shade", "mixed"] },
+      { key: "has_shade", label: "Is there shade cover?", type: "boolean", required: true },
+      { key: "feels_hot", label: "Perceived heat (1–5)", type: "number", required: true, min: 1, max: 5 },
+    ],
+  },
+  {
+    id: "sidewalk-condition",
+    title: "Sidewalk Audit",
+    description: "Cracked, blocked, or missing sidewalks? Miami's equity data gap starts at street level.",
+    difficulty: "easy",
+    dataType: "infrastructure",
+    baseXp: 80,
+    requiresPhoto: true,
+    icon: "🚶",
+    color: "#7B68EE",
+    fields: [
+      { key: "condition", label: "Sidewalk condition", type: "select", required: true,
+        options: ["good", "needs_attention", "urgent"] },
+      { key: "description", label: "What needs attention?", type: "text", required: false },
+    ],
+  },
+  {
+    id: "art-condition",
+    title: "Public Art Check",
+    description: "How is this mural or sculpture holding up? Help the city track the condition of its public art collection.",
+    difficulty: "easy",
+    dataType: "infrastructure",
+    baseXp: 80,
+    requiresPhoto: true,
+    icon: "🎨",
+    color: "#A8F040",
+    fields: [
+      { key: "condition", label: "Art condition", type: "select", required: true,
+        options: ["good", "needs_attention", "urgent"] },
+      { key: "description", label: "Notes (vandalism, fading, damage?)", type: "text", required: false },
+    ],
+  },
+  {
+    id: "air-quality",
+    title: "Air Quality Observation",
+    description: "Smell smoke, exhaust, or chemical odors? Log it. Miami's air quality is hyperlocal.",
+    difficulty: "easy",
+    dataType: "noise_pollution",
+    baseXp: 90,
+    requiresPhoto: false,
+    icon: "💨",
+    color: "#B0C4DE",
+    fields: [
+      { key: "category", label: "What do you notice?", type: "select", required: true,
+        options: ["smoke", "vehicle_exhaust", "chemical", "dust", "clean_air"] },
+      { key: "severity", label: "Intensity (1–5)", type: "number", required: true, min: 1, max: 5 },
+    ],
+  },
+];

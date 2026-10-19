@@ -1,0 +1,31 @@
+{
+  "name": "@artwalk/walker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@artwalk/ar-renderer": "workspace:*",
+    "@artwalk/geo-anchor": "workspace:*",
+    "@artwalk/gamification": "workspace:*",
+    "@artwalk/citizen-science": "workspace:*",
+    "@artwalk/missions": "workspace:*",
+    "@artwalk/data-refinery": "workspace:*",
+    "@artwalk/spatial-content": "workspace:*",
+    "@supabase/supabase-js": "^2.43.0",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "maplibre-gl": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.4.0"
+  }
+}
